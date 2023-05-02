@@ -1,3 +1,6 @@
 [submodule "test/docker-3cx"]
 	path = test/docker-3cx
 	url = https://github.com/ekondayan/docker-3cx
+[submodule "test/pfSense-Dashboard"]
+	path = test/pfSense-Dashboard
+	url = https://github.com/ifsc-slo/pfSense-Dashboard
