@@ -1,0 +1,57 @@
+#
+# ############################################################################
+# Project: docker-compose (none)
+# File...: reservas/reservas.yml
+# Created: Thursday, 2021/08/12 - 11:52:48
+# Author.: Fabiano Matos, fgm (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Last Modified: Tuesday, 2023/05/02 - 04:51:06
+# Modified By..: @fbnmtz, (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Version: 0.1.2.70
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Description: 
+# ############################################################################
+# HISTORY:
+#
+
+version: "3"
+services:
+  booked-app:
+    image: ifscslo/reservas:1
+    container_name: app
+    hostname: app
+    volumes:
+      - ${APP}:/var/www/booked
+
+  booked-mysql:
+    image: mysql:8
+    container_name: db
+    hostname: db
+    volumes:
+      - ${APP_DB}:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+
+  booked-web:
+    image: nginx:latest
+    container_name: web
+    hostname: web
+    ports:
+      - ${APP_PORT}:80
+    volumes:
+      - ${APP}:/var/www/booked
+      - ${APP_CFG}:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - booked-mysql
+
+  # booked-officer:
+  #   image: funkyfuture/deck-chores:1
+  #   restart: unless-stopped
+  #   environment:
+  #     TIMEZONE: America/Sao_Paulo
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
