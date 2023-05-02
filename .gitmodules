@@ -4,6 +4,3 @@
 [submodule "test/pfSense-Dashboard"]
 	path = test/pfSense-Dashboard
 	url = https://github.com/ifsc-slo/pfSense-Dashboard
-[submodule "test/docker-elk-pfSense"]
-	path = test/docker-elk-pfSense
-	url = https://github.com/kozoke/docker-elk-pfSense
