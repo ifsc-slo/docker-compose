@@ -7,3 +7,6 @@
 [submodule "test/docker-elk-pfSense"]
 	path = test/docker-elk-pfSense
 	url = https://github.com/udienz/docker-elk-pfSense
+[submodule "test/pfsense-suricata-elk-docker"]
+	path = test/pfsense-suricata-elk-docker
+	url = https://github.com/evaluationcopy/pfsense-suricata-elk-docker
