@@ -1,6 +1,3 @@
-[submodule "test/docker-3cx"]
-	path = test/docker-3cx
-	url = https://github.com/ekondayan/docker-3cx
 [submodule "test/pfSense-Dashboard"]
 	path = test/pfSense-Dashboard
 	url = https://github.com/ifsc-slo/pfSense-Dashboard
@@ -10,3 +7,9 @@
 [submodule "test/pfsense-suricata-elk-docker"]
 	path = test/pfsense-suricata-elk-docker
 	url = https://github.com/evaluationcopy/pfsense-suricata-elk-docker
+[submodule "test/3cx/docker-3cx"]
+	path = test/3cx/docker-3cx
+	url = https://github.com/ekondayan/docker-3cx
+[submodule "test/3cx/3cx-docker"]
+	path = test/3cx/3cx-docker
+	url = https://github.com/izer-xyz/3cx-docker
