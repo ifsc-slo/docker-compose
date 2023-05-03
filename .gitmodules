@@ -13,3 +13,6 @@
 [submodule "test/3cx/3cx-docker"]
 	path = test/3cx/3cx-docker
 	url = https://github.com/izer-xyz/3cx-docker
+[submodule "test/netbox-docker"]
+	path = test/netbox-docker
+	url = https://github.com/netbox-community/netbox-docker
