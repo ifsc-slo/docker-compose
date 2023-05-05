@@ -16,3 +16,6 @@
 [submodule "test/netbox-docker"]
 	path = test/netbox-docker
 	url = https://github.com/netbox-community/netbox-docker
+[submodule "test/play-with-docker"]
+	path = test/play-with-docker
+	url = https://github.com/play-with-docker/play-with-docker
