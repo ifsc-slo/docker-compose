@@ -1,0 +1,55 @@
+#
+# ############################################################################
+# Project: docker-compose (none)
+# File...: stage/vault/docker-compose.yml
+# Created: Sunday, 2023/05/07 - 12:32:07
+# Author.: @fbnmtz, (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Last Modified: Sunday, 2023/05/07 - 12:40:40
+# Modified By..: @fbnmtz, (fabiano.matoz@gmail.com)
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Version: 0.0.1.15
+# ~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~·~·~·~·~·~·~·~~·~·~·~·~·~~·~·~·~·~·~·~·~
+# Description: 
+#  >
+# ############################################################################
+# HISTORY:
+#
+
+version: '3.1'
+services:
+  db:
+    image: mariadb:10.3
+    restart: unless-stopped
+    environment:
+      #MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_DATABASE
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+    volumes:
+      - $DB_DATADIR:/var/lib/mysql
+
+  app:
+    image: passbolt/passbolt:latest-ce
+    #Alternatively you can use rootless:
+    #image: passbolt/passbolt:latest-ce-non-root
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      APP_FULL_BASE_URL: $APP_URL
+      DATASOURCES_DEFAULT_HOST: $APP_DB_HOST
+      DATASOURCES_DEFAULT_USERNAME: $APP_DB_USERNAME
+      DATASOURCES_DEFAULT_PASSWORD: $APP_DB_PASSWORD
+      DATASOURCES_DEFAULT_DATABASE: $APP_DB_DATABASE
+    volumes:
+      #- $APP_CONFIG_DATA/app:/usr/share/php/passbolt
+      #- $APP_CONFIG_DATA/etc/passbolt:/etc/passbolt
+      - $APP_CONFIG_DATA/etc/gpg:/etc/passbolt/gpg
+      - $APP_CONFIG_DATA/etc/jwt:/etc/passbolt/jwt
+    command: ["/usr/bin/wait-for.sh", "-t", "0", "db:3306", "--", "/docker-entrypoint.sh"]
+    ports:
+      - $HTTP:80
+      - $HTTPS:443
+
