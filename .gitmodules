@@ -22,3 +22,6 @@
 [submodule "test/ansible-docker-compose"]
 	path = test/ansible-docker-compose
 	url = https://github.com/andymotta/ansible-docker-compose
+[submodule "test/docker-compose-awx"]
+	path = test/docker-compose-awx
+	url = https://github.com/jpleger/docker-compose-awx
