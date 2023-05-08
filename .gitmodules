@@ -19,3 +19,6 @@
 [submodule "test/play-with-docker"]
 	path = test/play-with-docker
 	url = https://github.com/play-with-docker/play-with-docker
+[submodule "test/ansible-docker-compose"]
+	path = test/ansible-docker-compose
+	url = https://github.com/andymotta/ansible-docker-compose
